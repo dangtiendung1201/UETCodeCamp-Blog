@@ -16,7 +16,13 @@ export const createPost = (req, res) => {
         updatedAt: Date.now(),
     });
 
-    createdPost.save();
+    createdPost.save()
+        .then(res => {
+            console.log(res);
+        })
+        .catch(err => {
+            console.log(err);
+        });
 
     return res.json({ success: true, message: "Post created successfully" }).status(201);
 };
