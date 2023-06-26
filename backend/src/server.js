@@ -1,8 +1,9 @@
 import express from "express";
 import cors from "cors";
-
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+
+import postRoute from "./api/routes/postRoute.js";
 
 dotenv.config();
 const app = express();
@@ -21,6 +22,8 @@ console.log("Database connected!");
 app.get("/", (req, res) => {
     res.json({ success: true, message: "Welcome to express" }).status(200);
 });
+
+app.use("/posts", postRoute);
 
 app.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`);
