@@ -1,11 +1,11 @@
 import { Router } from "express";
-import { createPost } from "../controllers/postController.js";
+import { getAllPosts, searchPost, createPost } from "../controllers/postController.js";
 
 const postRoute = Router();
 
 // GET
-// postRoute.get("/", getAllPosts);
-// postRoute.get("/search", searchPost);
+postRoute.get("/", getAllPosts);
+postRoute.get("/search", searchPost);
 // postRoute.get("/:id", getPostById);
 
 // POST
