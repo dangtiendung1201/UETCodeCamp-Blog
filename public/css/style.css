@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap');
 
 :root{
@@ -328,3 +329,4 @@ img {
   .pagination:hover {
     color: var(--black);
   }
+
