@@ -1,3 +1,5 @@
+import { getPostById } from "./postController";
+
 export const Homepage = (req, res) => {
     const locals = {
         title: "Adu vjp que",
@@ -9,3 +11,4 @@ export const Homepage = (req, res) => {
 export const About = (req, res) => {
     res.render('about');
 };
+
