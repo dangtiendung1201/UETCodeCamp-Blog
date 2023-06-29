@@ -1,4 +1,4 @@
-import { getPostById } from "./postController";
+import { getPostById } from "./searchController";
 
 export const Homepage = (req, res) => {
     const locals = {
