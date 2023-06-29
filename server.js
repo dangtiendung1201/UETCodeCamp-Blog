@@ -4,8 +4,9 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import expressLayout from "express-ejs-layouts";
 
-import postRoute from "./api/routes/postRoute.js";
+import searchRoute from "./api/routes/searchRoute.js";
 import interfaceRoute from "./api/routes/interfaceRoute.js";
+import adminRoute from "./api/routes/adminRoute.js";
 
 dotenv.config();
 const app = express();
@@ -28,7 +29,8 @@ app.set('view engine', 'ejs');
 
 // routing
 app.use("/", interfaceRoute);
-app.use("/posts", postRoute);
+app.use("/posts", searchRoute);
+app.use("/manage", adminRoute);
 
 app.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`);
