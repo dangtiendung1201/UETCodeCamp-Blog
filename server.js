@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 import expressLayout from "express-ejs-layouts";
 
 import postRoute from "./api/routes/postRoute.js";
-import mainRoute from "./api/routes/mainRoute.js";
+import interfaceRoute from "./api/routes/interfaceRoute.js";
 
 dotenv.config();
 const app = express();
@@ -27,7 +27,7 @@ app.set('layout', './layouts/main');
 app.set('view engine', 'ejs');
 
 // routing
-app.use("/", mainRoute);
+app.use("/", interfaceRoute);
 app.use("/posts", postRoute);
 
 app.listen(PORT, () => {
