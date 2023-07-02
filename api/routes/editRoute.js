@@ -1,6 +1,8 @@
-// import { getToAdminEdit, putAdmin } from "../controllers/editController";
-// import { authMiddleware } from "./adminRoute";
-// import adminRoute from "./adminRoute";
+import { Router } from "express";
+import { editAdmin } from "../controllers/editController";
 
-// adminRoute.get("/edit-post/:id", authMiddleware, getToAdminEdit);
-// adminRoute.put("/edit-post/:id", authMiddleware, putAdmin);
+const editRoute = Router();
+
+editRoute.put("/:id", editAdmin);
+
+export default editRoute;

@@ -1,13 +1,13 @@
-// import {Post} from "../models/postModel";
+import Post from "../models/postModel";
 
-// //DELETE
-// export const deleteAdmin = async (req, res) => {
-
-//     try {
-//       await Post.deleteOne( { _id: req.params.id } );
-//       res.redirect('/dashboard');
-//     } catch (error) {
-//       console.log(error);
-//     }
-  
-// };
+export const deleteAdmin = (req, res) => {
+    Post.findOneAndDelete({ id: req.params.id })
+        .then(post => {
+            return res.json({ success: true, post }).status(200);
+        }
+        )
+        .catch(err => {
+            console.log(err);
+        }
+        );
+};

@@ -1,7 +1,5 @@
 import { Router } from "express";
 import { getAllPosts, searchPost, getPostById } from "../controllers/searchController.js";
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
 
 const searchRoute = Router();
 

@@ -1,5 +1,4 @@
 import Post from '../models/postModel';
-import { v4 as uuidv4 } from 'uuid';
 
 // GET method
 export const getAllPosts = (req, res) => {
