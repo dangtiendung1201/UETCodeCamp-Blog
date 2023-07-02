@@ -1,72 +1,102 @@
-import {Post} from "../models/postModel";
-import {User} from "../models/userModel";
+import User from "../models/userModel";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-//import {adminLayout} from '../views/layouts/admin';
-const jwtSecret = process.env.JWT_SECRET;
 
-//REGISTER
-export const registerAdmin = async (req, res) => {
-    try {
-      const { username, password } = req.body;
-      const hashedPassword = await bcrypt.hash(password, 10);
-  
-      try {
-        const user = await User.create({ username, password:hashedPassword });
-        res.status(201).json({ message: 'User Created', user });
-      } catch (error) {
-        if(error.code === 11000) {
-          res.status(409).json({ message: 'User already in use'});
-        }
-        res.status(500).json({ message: 'Internal server error'})
+export const registerAdmin = (req, res) => {
+  // name, password
+  const { username, password } = req.body;
+  if (!username || !password) {
+    return res.status(400).json({ message: "All fields are required" });
+  }
+
+  User.findOne({ username })
+    .then((user) => {
+      if (user) {
+        return res.status(400).json({ message: "User already exists" });
       }
-  
-    } catch (error) {
-      console.log(error);
+
+      bcrypt
+        .hash(password, 10)
+        .then((hashedPassword) => {
+          const user = new User({
+            username,
+            password: hashedPassword,
+          });
+
+          user
+            .save()
+            .then(() => {
+              // res.redirect("/login");
+              return res.status(200).json({ message: "User created successfully" });
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
+    )
+    .catch((err) => {
+      console.log(err);
+    }
+    );
 };
 
-// LOGIN
-//get to login page
-export const getToLoginAdmin = async (req, res) => {
-    try {
-      const locals = {
-        title: "Admin",
-        description: "Simple Blog created with NodeJs, Express & MongoDb."
-      }
-  
-      //res.render('admin/index', { locals, layout: adminLayout });
-    } catch (error) {
-      console.log(error);
-    }
+export const getToLoginAdmin = (req, res) => {
+  res.render("admin/login", {
+    locals: {
+      title: "Login",
+      description: "Free NodeJs User Management System",
+    },
+  });
 };
-//check login
-export const checkLoginAdmin = async (req, res) => {
-    try {
-      const { username, password } = req.body;
-      
-      const user = await User.findOne( { username } );
-  
-      if(!user) {
-        return res.status(401).json( { message: 'Invalid credentials' } );
+
+export const checkLoginAdmin = (req, res) => {
+  const { username, password } = req.body;
+
+  if (!username || !password) {
+    return res.status(400).json({ message: "All fields are required" });
+  }
+
+  User.findOne({ username })
+    .then((user) => {
+      if (!user) {
+        return res.status(400).json({ message: "User does not exist" });
       }
-  
-      const isPasswordValid = await bcrypt.compare(password, user.password);
-  
-      if(!isPasswordValid) {
-        return res.status(401).json( { message: 'Invalid credentials' } );
-      }
-  
-      const token = jwt.sign({ userId: user._id}, jwtSecret );
-      res.cookie('token', token, { httpOnly: true });
-      res.redirect('/dashboard');
-  
-    } catch (error) {
-      console.log(error);
+
+      bcrypt
+        .compare(password, user.password)
+        .then((isMatched) => {
+          if (isMatched) {
+            const token = jwt.sign(
+              { userId: user._id },
+              process.env.JWT_SECRET
+            );
+
+            res.cookie("token", token, { httpOnly: true });
+
+            // res.redirect("/dashboard");
+            return res.status(200).json({ message: "Login successful" });
+          } else {
+            return res.status(400).json({ message: "Invalid credentials" });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    })
+    .catch((err) => {
+      console.log(err);
     }
+    );
 };
-//LOGOUT
+
 export const adminLogout = (req, res) => {
-    res.clearCookie('token');
-    res.redirect('/');
+  res.clearCookie("token");
+  // res.redirect("/login");
+  return res.status(200).json({ message: "Logout successful" });
 };
+
+

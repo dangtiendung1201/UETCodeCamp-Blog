@@ -8,6 +8,6 @@ const searchRoute = Router();
 // GET
 searchRoute.get("/", getAllPosts);
 searchRoute.get("/search", searchPost);
-searchRoute.get("/post/:id", getPostById);
+searchRoute.get("/:id", getPostById);
 
 export default searchRoute;
