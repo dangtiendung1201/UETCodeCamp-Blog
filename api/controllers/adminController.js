@@ -72,13 +72,14 @@ export const checkLoginAdmin = (req, res) => {
           if (isMatched) {
             const token = jwt.sign(
               { userId: user._id },
-              process.env.JWT_SECRET
+              process.env.JWT_SECRET,
+              { expiresIn: "1d" } 
             );
 
             res.cookie("token", token, { httpOnly: true });
 
             // res.redirect("/dashboard");
-            return res.status(200).json({ message: "Login successful" });
+            return res.status(200).json({ message: "Login successful", token: token });
           } else {
             return res.status(400).json({ message: "Invalid credentials" });
           }
