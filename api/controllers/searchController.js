@@ -19,8 +19,9 @@ export const searchPost = (req, res) => {
     }
 
     Post.find({ title: { $regex: title, $options: "i" } })
-        .then(posts => {
-            return res.json({ success: true, posts }).status(200);
+        .then(post => {
+            res.render('search', { post });
+            // return res.json({ success: true, posts }).status(200);
         })
         .catch(err => {
             console.log(err);
