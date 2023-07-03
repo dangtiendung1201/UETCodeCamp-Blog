@@ -1,6 +1,10 @@
 import Post from "../models/postModel";
 import { v4 as uuidv4 } from 'uuid';
 
+export const addInterface = (req, res) => {
+    res.render('admin/add');
+};
+
 export const addAdmin = (req, res) => {
     const { title, body } = req.body;
 
@@ -19,7 +23,8 @@ export const addAdmin = (req, res) => {
     // save to database using .then, .catch
     createdPost.save()
         .then(() => {
-            return res.json({ success: true, message: "Post created successfully", post: createdPost }).status(201);
+            res.redirect('/dashboard');
+            // return res.json({ success: true, message: "Post created successfully", post: createdPost }).status(201);
         })
         .catch(err => {
             console.log(err);

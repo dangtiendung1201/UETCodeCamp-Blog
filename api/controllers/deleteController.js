@@ -1,5 +1,9 @@
 import Post from "../models/postModel";
 
+export const deleteInterface = (req, res) => {
+    res.redirect('/dashboard');
+};
+
 export const deleteAdmin = (req, res) => {
     Post.findOneAndDelete({ id: req.params.id })
         .then(post => {
