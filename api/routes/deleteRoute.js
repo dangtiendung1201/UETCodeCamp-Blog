@@ -1,5 +1,9 @@
-import { deleteAdmin } from "../controllers/deleteController";
-import { authMiddleware } from "./adminRoute";
-import adminRoute from "./adminRoute";
+import { Router } from "express";
+import { deleteInterface, deleteAdmin } from "../controllers/deleteController";
 
-adminRoute.delete("/delete-post/:id", authMiddleware, deleteAdmin);
+const deteleRoute = Router();
+
+deteleRoute.get("/:id", deleteInterface);
+deteleRoute.delete("/:id", deleteAdmin);
+
+export default deteleRoute;

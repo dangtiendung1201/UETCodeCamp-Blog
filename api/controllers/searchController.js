@@ -1,5 +1,4 @@
 import Post from '../models/postModel';
-import { v4 as uuidv4 } from 'uuid';
 
 // GET method
 export const getAllPosts = (req, res) => {
@@ -20,8 +19,9 @@ export const searchPost = (req, res) => {
     }
 
     Post.find({ title: { $regex: title, $options: "i" } })
-        .then(posts => {
-            return res.json({ success: true, posts }).status(200);
+        .then(post => {
+            res.render('search', { post });
+            // return res.json({ success: true, posts }).status(200);
         })
         .catch(err => {
             console.log(err);
@@ -37,7 +37,8 @@ export const getPostById = (req, res) => {
 
     Post.findOne({ id })
         .then(post => {
-            return res.json({ success: true, post }).status(200);
+            res.render('posts', { post });
+            // return res.json({ success: true, post }).status(200);
         })
         .catch(err => {
             console.log(err);
