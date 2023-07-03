@@ -16,6 +16,7 @@ export const addAdmin = (req, res) => {
         updatedAt: Date.now(),
     });
 
+    // save to database using .then, .catch
     createdPost.save()
         .then(() => {
             return res.json({ success: true, message: "Post created successfully", post: createdPost }).status(201);
