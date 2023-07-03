@@ -7,7 +7,8 @@ export const deleteInterface = (req, res) => {
 export const deleteAdmin = (req, res) => {
     Post.findOneAndDelete({ id: req.params.id })
         .then(post => {
-            return res.json({ success: true, post }).status(200);
+            res.redirect('/dashboard');
+            // return res.json({ success: true, post }).status(200);
         }
         )
         .catch(err => {

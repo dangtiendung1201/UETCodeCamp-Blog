@@ -2,16 +2,14 @@
 <div class="admin-title">
   <h2>View / Edit Post</h2>
 
-  <form action="/delete/<%= post.id %>" method="DELETE">
+  <form action="/delete/<%= post.id %>?vcl=DELETE" method="POST">
     <input type="submit" value="Delete" class="btn-delete btn">
   </form>
 
 </div>
 
-<form action="/edit/<%= post.id %>" method="PUT">
-
-  <label for="title"><b>Title</b></label>
-  <input type="text" placeholder="Post Title" name="title" value="<%= post.title %>">
+<form action="/edit/<%= post.id %>?vcl=PUT" method="POST">
+  <h3><%= post.title %></h3>
 
   <label for="body"><b>Content</b></label>
   <textarea name="body" cols="50" rows="10"><%= post.body %></textarea>

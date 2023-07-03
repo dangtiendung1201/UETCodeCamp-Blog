@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import expressLayout from "express-ejs-layouts";
+import methodOverride from "method-override";
 
 import searchRoute from "./api/routes/searchRoute.js";
 import interfaceRoute from "./api/routes/interfaceRoute.js";
@@ -21,6 +22,7 @@ console.log(PORT);
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride('vcl'));
 
 mongoose.connect(process.env.MONGO_URL);
 console.log("Database connected!");
