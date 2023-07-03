@@ -7,5 +7,5 @@ interfaceRoute.get("", Homepage);
 interfaceRoute.get("/about", About);
 interfaceRoute.get("/contact", Contact);
 interfaceRoute.get("/Manage", Manage);
-interfaceRoute.get("/post/:id", getBlog)
+
 export default interfaceRoute;

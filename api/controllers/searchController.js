@@ -36,7 +36,7 @@ export const getPostById = (req, res) => {
 
     Post.findOne({ id })
         .then(post => {
-            // res.render('post', { post });
+            res.render('posts', { post });
             return res.json({ success: true, post }).status(200);
         })
         .catch(err => {

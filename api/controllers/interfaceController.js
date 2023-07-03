@@ -42,18 +42,3 @@ export const Contact = (req, res) =>{
 export const Manage = (req, res) =>{
     res.render('manage');
 };
-
-export const getBlog = (req, res) =>{
-    const locals = {
-        title: "NodeJs Blog"
-    }
-    const {id} = req.params;
-    console.log(id);
-    if (!id) {
-        return res.json({ success: false, message: "Please fill all the fields" }).status(400);
-    }
-    
-    console.log(id);
-    const data = Post.find({"_id": ObjectId(id) });
-    //res.render('post', locals, data);
-};
