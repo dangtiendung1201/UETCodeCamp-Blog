@@ -80,7 +80,7 @@ export const checkLoginAdmin = (req, res) => {
             res.cookie("token", token, { httpOnly: true });
 
             res.redirect("/dashboard");
-            return res.status(200).json({ message: "Login successful", token: token });
+            // return res.status(200).json({ message: "Login successful", token: token });
           } else {
             return res.status(400).json({ message: "Invalid credentials" });
           }
