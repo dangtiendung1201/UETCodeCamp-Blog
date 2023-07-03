@@ -313,7 +313,7 @@ img {
     position: absolute;
     top: 0;
     right: 0;
-    color: var(--gray-light);
+    color: var(--red);
     padding: 15px;
   }
   
