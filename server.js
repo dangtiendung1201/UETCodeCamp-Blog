@@ -10,6 +10,7 @@ import adminRoute from "./api/routes/adminRoute.js";
 import deteleRoute from "./api/routes/deleteRoute.js";
 import editRoute from "./api/routes/editRoute.js";
 import addRoute from "./api/routes/addRoute.js";
+import dashboardRoute from "./api/routes/dashboardRoute.js";
 
 dotenv.config();
 const app = express();
@@ -37,6 +38,7 @@ app.use("/manage", adminRoute);
 app.use("/delete", deteleRoute);
 app.use("/edit", editRoute);
 app.use("/add", addRoute);
+app.use("/dashboard", dashboardRoute);
 
 
 app.listen(PORT, () => {

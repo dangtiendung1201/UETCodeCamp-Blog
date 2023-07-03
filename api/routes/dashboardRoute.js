@@ -1,5 +1,8 @@
-// import { getToAdminDashboard } from "../controllers/dashboardController";
-// import { authMiddleware } from "./adminRoute";
-// import adminRoute from "./adminRoute";
+import { Router } from "express";
+import { Dashboard } from "../controllers/dashboardController.js";
 
-// adminRoute.get("/dashboard", authMiddleware, getToAdminDashboard);
+const dashboardRoute = Router();
+
+dashboardRoute.get("", Dashboard);
+
+export default dashboardRoute;

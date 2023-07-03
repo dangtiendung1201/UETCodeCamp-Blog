@@ -26,8 +26,9 @@ export const registerAdmin = (req, res) => {
           user
             .save()
             .then(() => {
+              res.redirect("/manage/admin");
               // res.redirect("/login");
-              return res.status(200).json({ message: "User created successfully" });
+              // return res.status(200).json({ message: "User created successfully" });
             })
             .catch((err) => {
               console.log(err);
@@ -45,7 +46,7 @@ export const registerAdmin = (req, res) => {
 };
 
 export const getToLoginAdmin = (req, res) => {
-  res.render("admin/login", {
+  res.render("manage", {
     locals: {
       title: "Login",
       description: "Free NodeJs User Management System",
@@ -78,7 +79,7 @@ export const checkLoginAdmin = (req, res) => {
 
             res.cookie("token", token, { httpOnly: true });
 
-            // res.redirect("/dashboard");
+            res.redirect("/dashboard");
             return res.status(200).json({ message: "Login successful", token: token });
           } else {
             return res.status(400).json({ message: "Invalid credentials" });
@@ -96,8 +97,8 @@ export const checkLoginAdmin = (req, res) => {
 
 export const adminLogout = (req, res) => {
   res.clearCookie("token");
-  // res.redirect("/login");
-  return res.status(200).json({ message: "Logout successful" });
+  res.redirect("/");
+  // return res.status(200).json({ message: "Logout successful" });
 };
 
 

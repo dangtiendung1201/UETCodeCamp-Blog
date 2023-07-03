@@ -44,9 +44,9 @@ textarea{
 }
 
 .btn{
-    background-color: var(--black);
+    background-color: pink;
     border: none;
-    color: white;
+    color: green;
     padding: 16px 32px;
     text-decoration: none;
     margin: 4px 2px;
@@ -55,7 +55,7 @@ textarea{
 
 .btn-delete{
     padding: 10px 16px;
-    background-color: var(--red);
+    background-color: pink;
 }
 
 img {
@@ -272,8 +272,8 @@ img {
   
   .admin-post-controls .btn  {
     display: inline-block;
-    background-color: var(--black);
-    color: var(--gray-light);
+    background-color: pink;
+    color: green;
     border: 0;
     text-decoration: none;
     font-size: .8rem;
