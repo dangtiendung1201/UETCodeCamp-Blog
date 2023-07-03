@@ -1,24 +1,14 @@
-// import {Post} from "../models/postModel";
-// //import {adminLayout} from '../views/layouts/admin';
+import Post from "../models/postModel";
 
-// //ADMIN DASHBOARD
-// //get to admin's dashboard
-// export const getToAdminDashboard = async (req, res) => {
-//     try {
-//       const locals = {
-//         title: 'Dashboard',
-//         description: 'Simple Blog created with NodeJs, Express & MongoDb.'
-//       }
-  
-//       const data = await Post.find();
-//       /*res.render('admin/dashboard', {
-//         locals,
-//         data,
-//         layout: adminLayout
-//       });*/
-  
-//     } catch (error) {
-//       console.log(error);
-//     }
-  
-// };
+export const Dashboard = (req, res) => {
+    // get all posts then render
+    Post.find()
+        .then(posts => {
+            res.render('admin/dashboard', { posts });
+        }
+        )
+        .catch(err => {
+            console.log(err);
+        }
+        );
+};
