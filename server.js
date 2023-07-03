@@ -7,6 +7,9 @@ import expressLayout from "express-ejs-layouts";
 import searchRoute from "./api/routes/searchRoute.js";
 import interfaceRoute from "./api/routes/interfaceRoute.js";
 import adminRoute from "./api/routes/adminRoute.js";
+import deteleRoute from "./api/routes/deleteRoute.js";
+import editRoute from "./api/routes/editRoute.js";
+import addRoute from "./api/routes/addRoute.js";
 
 dotenv.config();
 const app = express();
@@ -31,6 +34,10 @@ app.set('view engine', 'ejs');
 app.use("/", interfaceRoute);
 app.use("/posts", searchRoute);
 app.use("/manage", adminRoute);
+app.use("/delete", deteleRoute);
+app.use("/edit", editRoute);
+app.use("/add", addRoute);
+
 
 app.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`);
